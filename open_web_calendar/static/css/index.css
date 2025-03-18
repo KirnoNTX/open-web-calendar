@@ -1,8 +1,43 @@
 /*
- * SPDX-FileCopyrightText: 2025 Nicco Kunzmann and Open Web Calendar Contributors <https://open-web-calendar.quelltext.eu/>
+ * SPDX-FileCopyrightText: 2024 Nicco Kunzmann and Open Web Calendar Contributors <https://open-web-calendar.quelltext.eu/>
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
+
+:root {
+  --primary-color: #212121;
+  --secondary-color: #757575;
+  --background-color: #ffffff;
+  --accent-color: #007acc;  
+  --bottom-slider-height: calc(100% - 600px);
+  --minimum-bottom-slider-height: 1.5em;
+  --nav-height: 7em;
+  --maximum-height-of-calendar: 1200px;
+  --minimum-height-of-calendar: 200px;
+  --total-document-height: 100%;
+  --border-radius: 0.5em;
+  --main-width: 35em;
+}
+
+body, html {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--primary-color);
+    background: var(--background-color);
+    height: 100%;  
+    margin: 0;
+    padding: 0;
+}
+
+.dark {
+  --primary-color: #ffffff;
+  --secondary-color: #cfcfcf;
+  --background-color: #212121;
+  --accent-color: #007acc;
+  color: var(--primary-color);
+  background: var(--background-color);
+}
 
 body, .flexcontainer {
   display: flex;
@@ -13,13 +48,34 @@ body, .flexcontainer {
   flex: 1 1 auto;
 }
 
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  border-color: var(--primary-color);
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  margin-top: 0.3em;
+  padding: 1em 1em 1em 1em;
+  color: var(--secondary-color);
+}
+
+footer a {
+  color: var(--accent-color);
+}
 
 .languages {
   text-align: center;
 }
 
 .languages a {
-  color: var(--secondary-color);
+  color: var(--accent-color);
   text-decoration: none;
   margin: 0.2em;
   display: inline-block;
@@ -46,18 +102,15 @@ section {
   flex: 1 1 auto;
 }
 
-
 .code {
     padding: 1em;
     background: var(--secondary-color);
     color: var(--background-color);
     border-radius: var(--border-radius);
-    overflow-y: hidden;
-    overflow-x: auto;
+    overflow: hidden;
 }
 
-
-.calendar-url-input, #calendar-title{
+.calendar-url-input, #calendar-title {
     width: 100%;
 }
 
@@ -89,7 +142,6 @@ section {
 }
 
 #map-link-location, #map-link-geo {
-  /* credits to https://css-tricks.com/styling-texty-inputs-only/ */
   margin: 2px;
   width: 100%;
 }
@@ -106,7 +158,7 @@ section {
 .no-style-listing {
   padding-bottom: 1em;
   list-style-type: none;
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .no-style-listing li {
@@ -115,8 +167,6 @@ section {
 
 nav {
   overflow: visible;
-  /* position: sticky; */
-  /* top: 0; */
   width: 100%;
   height: var(--nav-height);
 }
@@ -145,11 +195,10 @@ section.active {
 
 nav a {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--accent-color);
 }
 
-nav li {
-}
+nav li { }
 
 nav ul {
   display: none;
@@ -161,13 +210,11 @@ nav h1 {
 
 #currect-section {
   color: var(--primary-color);
-  /* margin-left: auto;
-  margin-right: auto; */
   display: inline-block;
 }
 
 #navigate-next, #navigate-previous {
-  color: var(--secondary-color);
+  color: var(--accent-color);
   vertical-align: middle;
   display: block;
   font-size: 1.5em;
@@ -182,15 +229,11 @@ nav h1 {
   content: " ➡";
 }
 
-
 #navigate-next:hover, #navigate-previous:hover {
   color: var(--primary-color);
-  vertical-align: middle;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 122, 204, 0.1);
   border-radius: var(--border-radius);
-} 
-
-
+}
 
 #bottom-done-link:before {
   content: "✓ ";
@@ -201,7 +244,24 @@ nav h1 {
   justify-content: space-between;
 }
 
-.no-previous-section .needs-previous-section, .no-next-section .needs-next-section {
+.button {
+  display: inline-block;
+  padding: 0.5em;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--background-color);
+}
+
+.button:hover {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+}
+
+.no-previous-section .needs-previous-section, 
+.no-next-section .needs-next-section {
   visibility: hidden;
 }
 
@@ -220,10 +280,6 @@ nav h1 {
 #height-slider {
   height: var(--bottom-slider-height);
   min-height: var(--minimum-bottom-slider-height);
-  /* display: block; */
-  /* align-self: stretch; */
-  /* position: fixed;
-  bottom: 0em; */
   text-align: center;
   text-decoration: none;
   width: 100%;
@@ -231,24 +287,19 @@ nav h1 {
   color: var(--background-color);
   background: var(--secondary-color);
   overflow: hidden;
-  /* see https://stackoverflow.com/a/43275544/1320237 */
-  /* touch-action: none; */
   max-height: calc(var(--maximum-height-of-calendar) - var(--minimum-height-of-calendar));
 }
 
 #overlay {
-  /* block mouse events over calendar and other elements */
   background-color: rgba(255, 255, 255, 0.01);
   display: none;
   position: absolute;
   z-index: 10;
-  top: 0em;
-  left: 0em;
-  right: 0em;
-  bottom: 0em;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: var(--total-document-height);
-  /* see https://stackoverflow.com/a/43275544/1320237 */
-  /* touch-action: none; */
 }
 
 .sliding #overlay {
@@ -257,8 +308,6 @@ nav h1 {
 
 #width-slider {
   display: none;
-  /* see https://stackoverflow.com/a/43275544/1320237 */
-  /* touch-action: none; */
 }
 
 aside {
@@ -275,9 +324,6 @@ aside {
   width: 100%;
 }
 
-/* Adding URLS */
-
-/* see https://stackoverflow.com/a/76079959/1320237 */
 #add-url-calendars:not(:has(option)) {
   display: none;
 }
@@ -296,7 +342,9 @@ aside {
   flex-direction: row;
 }
 
-#add-url-username, #add-url-password, #add-url-credentials-label {
+#add-url-username, 
+#add-url-password, 
+#add-url-credentials-label {
   flex: 1 1 auto;
   width: 33%;
 }
@@ -329,32 +377,15 @@ aside {
   padding: 1em;
 }
 
-#calendar-urls li input, #calendar-urls li button {
+#calendar-urls li input, 
+#calendar-urls li button {
   height: 2em;
   vertical-align: middle;
 }
 
-#select-sections   {
+#select-sections {
   text-align: center;
 }
-
-#caldav-options {
-  display: none;
-}
-
-#caldav-options.visible {
-  display: flex;
-  flex-direction: column;
-}
-
-#caldav-options line {
-  flex-direction: row;
-  display: flex;
-  width: 100%;
-}
-
-
-/* media query goes last */
 
 @media only screen and (min-width: 70em) {
   :root {
@@ -364,11 +395,9 @@ aside {
     --maximum-height-of-calendar: calc(100vh - var(--nav-height));
   }
   aside, main {
-    /* display: inline-block; */
     height: var(--maximum-height-of-calendar);
-    margin: 0em;
-    padding: 0em;
-
+    margin: 0;
+    padding: 0;
   }
   .flexcontainer {
     flex-direction: row;
@@ -379,32 +408,28 @@ aside {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
   }
-  aside, #height-slider  {
+  aside, #height-slider {
     width: calc(100% - var(--main-width));
   }
   nav {
     display: block;
     position: initial;
-    /* height: var(--nav-height); */
   }
   .bottom-navigation {
     width: var(--main-width);
     flex: 1 1 auto;
   }
   #height-slider {
-    /* position: fixed;
-    bottom: 0em; */
     max-height: calc(100% - var(--minimum-height-of-calendar));
     width: 100%;
-  }   
+  }
   #width-slider {
     display: block;
     position: fixed;
     top: 50%;
     left: var(--main-width);
-    translate: -50% -50%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
     user-select: none;
   }
