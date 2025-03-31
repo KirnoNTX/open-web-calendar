@@ -36,7 +36,7 @@ idna==3.10
     # via
     #   requests
     #   trio
-iniconfig==2.0.0
+iniconfig==2.1.0
     # via pytest
 jinja2==3.1.6
     # via reuse
@@ -72,9 +72,9 @@ responses==0.25.7
     # via -r requirements/test.in
 reuse==5.0.2
     # via -r requirements/test.in
-ruff==0.11.0
+ruff==0.11.2
     # via -r requirements/test.in
-selenium==4.29.0
+selenium==4.30.0
     # via -r requirements/test.in
 six==1.17.0
     # via
@@ -92,7 +92,7 @@ trio==0.29.0
     #   trio-websocket
 trio-websocket==0.12.2
     # via selenium
-typing-extensions==4.12.2
+typing-extensions==4.13.0
     # via selenium
 urllib3[socks]==2.3.0
     # via
